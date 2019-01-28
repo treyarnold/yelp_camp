@@ -1,0 +1,51 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+            <h1>Welcome to YelpCamp!</h1>
+            <p>View our hand-picked campgrounds from all over the world</p>
+            <p>
+                <a class="btn btn-primary btn-lg" href="/campgrounds/new">Add New Campground</a>
+            </p>
+        </div>  
+    </header>
+    
+    <!--<div class="row d-flex flex-wrap">-->
+    <!--    <div class="col-lg-12">-->
+    <!--        <h3>Our Most Popular Campgrounds!</h3>-->
+    <!--    </div>-->
+    <!--</div>-->
+    
+    <!--switched from rows and thumbnails to cards in a card deck to work with bootstrap 4-->
+    <div class="card-deck">
+        <% for (var i = 0; i < campgrounds.length; i++) { %>
+            <div class="card mb-4">
+                <img class="card-img-top" src="<%= campgrounds[i].image %>" alt="Card image cap">
+                <div class="card-body text-center">
+                    <h5 class="card-title"><%= campgrounds[i].name %></h5>
+                    <p>
+                        <a href="/campgrounds/<%= campgrounds[i]._id %>" class="btn btn-primary">More Info</a>
+                    </p>
+                    <!--<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
+                    <!--<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+                </div>
+            </div>
+            <!--default wraping on xs is 1-->
+            <% if (((i + 1) % 2) == 0) { %>
+                <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+            <% } %>   
+                <% if (((i + 1) % 3) == 0) { %>
+                    <div class="w-100 d-none d-md-block d-lg-none"><!-- wrap every 3 on md--></div>
+                <% } %>
+                    <% if (((i + 1) % 4) == 0) { %>
+                        <div class="w-100 d-none d-lg-block d-xl-none"><!-- wrap every 4 on lg--></div>
+                    <% } %>
+                        <%  if (((i + 1) % 5) == 0) { %>
+                            <div class="w-100 d-none d-xl-block"><!-- wrap every 5 on xl--></div>
+                        <% } %>
+        <% } %>
+    </div>    
+</div>
+
+<% include ../partials/footer %>
